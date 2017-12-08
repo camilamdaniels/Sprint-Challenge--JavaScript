@@ -54,48 +54,26 @@ const reverseStr = str => {
 };
 
 // let masterList = [];
+// let value;
+// let flag;
 let value;
-let flag;
 const checkMatchingLeaves = obj => {
   // return true if every property on `obj` is the same
   // otherwise return false
-  // let value = undefined;
-  // masterList = masterList.concat(keyList)
-  // let flag;
+  let flag;
   Object.keys(obj).forEach(key => {
-    if (typeof key === 'object') {
-      checkMatchingLeaves(key);
-    } else if (typeof obj[key] === 'object') {
+    if (typeof obj[key] === 'object') {
       checkMatchingLeaves(obj[key]);
-    } else if (typeof key !== 'object' && typeof obj[key] !== 'object' && value === undefined) {
-      value = obj[key];
-      flag = true;
-      // keyList.push(obj[key]);
-      // masterList = masterList.concat(keyList);
-    } else if (typeof key !== 'object' && typeof obj[key] !== 'object' && value !== obj[key]) {
-      flag = false;
-    } else {
-      flag = true;
     }
-    // masterList = masterList.concat(keyList);
+    // let value;
+    flag = true;
+    if (typeof obj[key] !== 'object' && value !== undefined) {
+      value = obj[key];
+    } else if (typeof obj[key] !== 'object' && value !== obj[key]) {
+      flag = false;
+    }
+    return flag;
   });
-  // return true;
-  // masterList = masterList.concat(keyList);
-  // Object.values(obj).forEach(value => {
-  //   if (typeof value === 'object') {
-  //     checkMatchingLeaves(value);
-  //   } else {
-  //     keyList.push(value);
-  //   }
-  // });
-  // let flag = true;
-  // for (let i = 0; i < keyList.length; i++) {
-  //   const value = keyList[0];
-  //   if (keyList[i] !== value) flag = false;
-  // }
-  // console.log(keyList);
-  // // keyList = [];
-  // return flag;
   return flag;
 };
 
@@ -104,6 +82,15 @@ const checkMatchingLeaves = obj => {
 
 // console.log(checkMatchingLeaves(testObj1));
 // console.log(checkMatchingLeaves(testObj2));
+
+// const tree1 = {x: 1, y: 1, z: 1,};
+// const tree2 = {x: 1, y: 1, z: 2,};
+
+// const tree1 = {x: 1, y: 1, z: 1, xa: {xx: 1, xy: 1, xz: 1, zz: {a: {b: {z: 1,},},},},};
+// const tree2 = {x: 1, y: 1, z: 1, xa: {xx: 1, xy: 1, xz: 1, zz: {a: {b: {z: 2,},},},}, r: 1,};
+
+// console.log(checkMatchingLeaves(tree1));
+// console.log(checkMatchingLeaves(tree2));
 
 const flatten = elements => {
   // Flattens a nested array (the nesting can be to any depth).
