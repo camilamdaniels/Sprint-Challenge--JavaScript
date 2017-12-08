@@ -57,19 +57,42 @@ const checkMatchingLeaves = obj => {
   // return true if every property on `obj` is the same
   // otherwise return false
   const keyList = [];
+  // const valueList = [];
   Object.keys(obj).forEach(key => {
     if (typeof key === 'object') {
+      // console.log(obj[key]);
       checkMatchingLeaves(key);
-    } else if (typeof key !== 'object') {
-      keyList.push(key);
+    } else if (typeof key !== 'object' && typeof obj[key] !== 'object') {
+      keyList.push(obj[key]);
+      // keyList = keyList.concat(keyList);
     }
   });
+
+  Object.values(obj).forEach(value => {
+    if (typeof value === 'object') {
+      checkMatchingLeaves(value);
+    } else {
+      keyList.push(value);
+    }
+  });
+
+  // const masterList = keyList.join('')+valueList.join('');
+  // console.log(masterList);
+
+  let flag = true;
   for (let i = 0; i < keyList.length; i++) {
     const value = keyList[0];
-    if (keyList[i] !== value) return false;
-    return true;
+    if (keyList[i] !== value) flag = false;
   }
+  // console.log(keyList);
+  return flag;
 };
+
+// const testObj1 = {a: 1, b: 1, c: {ca: 1, cb: {caa: 1, cab: 3}}, d: 2};
+// const testObj2 = {a: 1, b: 1, c: {ca: 1, cb: 1}, d: 1};
+
+// console.log(checkMatchingLeaves(testObj1));
+// console.log(checkMatchingLeaves(testObj2));
 
 const flatten = elements => {
   // Flattens a nested array (the nesting can be to any depth).
