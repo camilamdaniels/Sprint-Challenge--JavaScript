@@ -37,7 +37,7 @@ const cacheFunction = cb => {
   // then it should return the cached result and not invoke `cb` again.
   // `cb` should only ever be invoked once for a given set of arguments.
   const cache = {};
-  return (input) => {
+  return input => {
     if ({}.hasOwnProperty.call(cache, input)) return cache[input];
     cache[input] = cb(input);
     return cache[input];
@@ -56,14 +56,26 @@ const reverseStr = str => {
 const checkMatchingLeaves = obj => {
   // return true if every property on `obj` is the same
   // otherwise return false
-
+  const keyList = [];
+  Object.keys(obj).forEach(key => {
+    if (typeof key === 'object') {
+      checkMatchingLeaves(key);
+    } else if (typeof key !== 'object') {
+      keyList.push(key);
+    }
+  });
+  for (let i = 0; i < keyList.length; i++) {
+    const value = keyList[0];
+    if (keyList[i] !== value) return false;
+    return true;
+  }
 };
 
 const flatten = elements => {
   // Flattens a nested array (the nesting can be to any depth).
   // Example: flatten([1, [2], [3, [[4]]]]); => [1, 2, 3, 4];
   let output = [];
-  each(elements, (num) => {
+  each(elements, num => {
     if (Array.isArray(num)) {
       output = output.concat(flatten(num));
     } else {
