@@ -53,38 +53,49 @@ const reverseStr = str => {
   return str.split('').reverse().join('');
 };
 
+// let masterList = [];
+let value;
+let flag;
 const checkMatchingLeaves = obj => {
   // return true if every property on `obj` is the same
   // otherwise return false
-  const keyList = [];
-  // const valueList = [];
+  // let value = undefined;
+  // masterList = masterList.concat(keyList)
+  // let flag;
   Object.keys(obj).forEach(key => {
     if (typeof key === 'object') {
-      // console.log(obj[key]);
       checkMatchingLeaves(key);
-    } else if (typeof key !== 'object' && typeof obj[key] !== 'object') {
-      keyList.push(obj[key]);
-      // keyList = keyList.concat(keyList);
-    }
-  });
-
-  Object.values(obj).forEach(value => {
-    if (typeof value === 'object') {
-      checkMatchingLeaves(value);
+    } else if (typeof obj[key] === 'object') {
+      checkMatchingLeaves(obj[key]);
+    } else if (typeof key !== 'object' && typeof obj[key] !== 'object' && value === undefined) {
+      value = obj[key];
+      flag = true;
+      // keyList.push(obj[key]);
+      // masterList = masterList.concat(keyList);
+    } else if (typeof key !== 'object' && typeof obj[key] !== 'object' && value !== obj[key]) {
+      flag = false;
     } else {
-      keyList.push(value);
+      flag = true;
     }
+    // masterList = masterList.concat(keyList);
   });
-
-  // const masterList = keyList.join('')+valueList.join('');
-  // console.log(masterList);
-
-  let flag = true;
-  for (let i = 0; i < keyList.length; i++) {
-    const value = keyList[0];
-    if (keyList[i] !== value) flag = false;
-  }
+  // return true;
+  // masterList = masterList.concat(keyList);
+  // Object.values(obj).forEach(value => {
+  //   if (typeof value === 'object') {
+  //     checkMatchingLeaves(value);
+  //   } else {
+  //     keyList.push(value);
+  //   }
+  // });
+  // let flag = true;
+  // for (let i = 0; i < keyList.length; i++) {
+  //   const value = keyList[0];
+  //   if (keyList[i] !== value) flag = false;
+  // }
   // console.log(keyList);
+  // // keyList = [];
+  // return flag;
   return flag;
 };
 
