@@ -31,7 +31,10 @@
 	console.log(multiplyBy5(7));
 	console.log(multiplyBy10(18));
 4. Describe the four rules of the 'this' keyword. No need to provide examples about it this time :)
-	1. Window/ Global Object - 
+	1. Window/ Global Object - When in the global scope, the value of "this" will be the window or console object
+	2. Implicit Binding - Whenever a function is called by a preceding dot, the function left of the dot is the 'this' context
+	3. 'new' Binding - Whenever a constructor function is used, the object created with the 'new' keyword becomes 'this' 
+	4. Explicit Binding - Whenever JavaScript's native '.call', '.bind', '.apply' are used
 
 ## Initializing Project - We have set up a testing environment for you using `Jest`
 * Fork/Clone this project into a directory on your machine.
