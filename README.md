@@ -7,34 +7,29 @@
 ## Start by forking and cloning this repository.
 ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
 1. Describe some of the differences between `.forEach` & `.map`.
-	map transforms the contents of an array using a function, then creates a new array to hold the new information
-	the forEach method allows you to iterate over the contents of an array
+	'.map' transforms the contents of an array using a function, then creates a new array to hold the new information.
+	The forEach() method allows you to iterate over the contents of an array.
 2. Name five different Types in JavaScript. A Type is something that can represent data. What is so special about Arrays?
-	String, number, boolean, null, undefined, object. 
-	An array is an object that allows you to store a list of data of any type. Each item in the list of data is accessible by a numerical index. Indices start at 0. You can iterate over arrays using for loops and they have a library of built in functions that allow you manipulate and transform data. 
+	The five different types in JavaScript are String, Number, boolean, null, undefined, Object. 
+	An array is an object that allows you to store a list of data of any type. Each item in the list of data is accessible by a numerical index. Indices start at 0. You can iterate over arrays using for loops and they have a library of built in functions that allow you to manipulate and transform the data stored in them. 
 3. What is closure? Can you code out a quick example of a closure?
 	A closure establishes the scope of a variable or a method. Methods and variables that are contained within a function are within the function's scope. Variables declared outside of a particular function are in the global scope and can be accessed by all functions in the file. Methods declared in the global scope can be accessed by all functions in the file as well.
 
-	makeMultiplier(x) => {
-		return y => {
-			x * y;
-		}
-	}
+	const add5 = (x) => {
+    	let counter = 0;
+    	function plus() {
+      		counter += 5;
+    	}
+    	plus();
+    	return counter + x;
+  	}
 
-	multiplyBy5() => {
-		return makeMultiplier(5);
-	} 
-	multiplyBy10() => {
-		return makeMultiplier(10);
-	} 
-
-	console.log(multiplyBy5(7));
-	console.log(multiplyBy10(18));
+  	console.log(add5(3));
 4. Describe the four rules of the 'this' keyword. No need to provide examples about it this time :)
-	1. Window/ Global Object - When in the global scope, the value of "this" will be the window or console object
-	2. Implicit Binding - Whenever a function is called by a preceding dot, the function left of the dot is the 'this' context
-	3. 'new' Binding - Whenever a constructor function is used, the object created with the 'new' keyword becomes 'this' 
-	4. Explicit Binding - Whenever JavaScript's native '.call', '.bind', '.apply' are used
+	1. Window/ Global Object - When in the global scope, the value of "this" will be the window or console object.
+	2. Implicit Binding - Whenever a function is called by a preceding dot, the function left of the dot is the 'this' context.
+	3. 'new' Binding - Whenever a constructor function is used, the object created with the 'new' keyword becomes 'this'. 
+	4. Explicit Binding - Whenever JavaScript's native '.call', '.bind', '.apply' are used.
 
 ## Initializing Project - We have set up a testing environment for you using `Jest`
 * Fork/Clone this project into a directory on your machine.
